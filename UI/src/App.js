@@ -13,6 +13,7 @@ import RegisterScreen from './screens/RegisterScreen.js';
 import SignInScreen from './screens/SignInScreen.js';
 import InternshipEditScreen from './screens/InternshipEditScreen.js';
 import UserListScreen from './screens/UserListScreen.js';
+import UserEditScreen from './screens/UserEditScreen.js';
 
 
 function App(){
@@ -113,6 +114,10 @@ function App(){
                     <AdminRoute 
                         path="/userlist" 
                         component={UserListScreen}
+                    ></AdminRoute>
+                    <AdminRoute 
+                        path="/user/:id/edit" 
+                        component={UserEditScreen}
                     ></AdminRoute>
                     <Route path="/" component={HomeScreen} exact></Route>
                 </main>

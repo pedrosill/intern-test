@@ -2,7 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { internshipCreateReducer, internshipDeleteReducer, internshipDetailsReducer, internshipListReducer, internshipUpdateReducer } from './reducers/internshipReducers';
 import { savedReducer } from './reducers/savedReducers';
-import { userDeleteReducer, userDetailsReducer, userListReducer, userRegisterReducer, userSignInReducer, userUpdateProfileReducer } from './reducers/userReducers';
+import { userDeleteReducer, userDetailsReducer, userListReducer, userRegisterReducer, userSignInReducer, userUpdateProfileReducer, userUpdateReducer } from './reducers/userReducers';
 
 const initialState = {
     userSignin: {
@@ -24,6 +24,7 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
+    userUpdate: userUpdateReducer,
     internshipCreate: internshipCreateReducer,
     internshipUpdate: internshipUpdateReducer,
     internshipDelete: internshipDeleteReducer,
