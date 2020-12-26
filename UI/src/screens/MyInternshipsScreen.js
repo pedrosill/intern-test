@@ -56,10 +56,10 @@ export default function SavedInternshipsScreen(props) {
                                                 <Link to={`/internship/${item.internship}`}>{item.name}</Link>
                                             </div>
                                             <div>
-                                                <button className="primary block" onClick={applyHandler} disabled={savedItems.length === 0}> Apply </button>
+                                                <button className="small" onClick={applyHandler} disabled={savedItems.length === 0}> Apply </button>
                                             </div>
                                             <div>
-                                                <button className="primary block" onClick={() => removeFromSavedHandler(item.internship)}> Delete </button>
+                                                <button className="small" onClick={() => removeFromSavedHandler(item.internship)}> Delete </button>
                                             </div>
                                         </div>
                                     </li>

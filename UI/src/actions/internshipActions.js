@@ -100,7 +100,7 @@ export const deleteInternship = (internshipId) => async(dispatch, getState) => {
         const { data } = Axios.delete(`/api/internships/${internshipId}`, {
             headers: { Authorization: `Bearer ${userInfo.token}`},
         });
-        dispatch({type: INTERNSHIP_DELETE_SUCCESS});
+        dispatch({type: INTERNSHIP_DELETE_SUCCESS, payload: data});
     } catch (error){
         const message = 
         error.response && error.response.data.message 
