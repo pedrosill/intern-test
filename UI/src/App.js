@@ -12,6 +12,7 @@ import ProfileScreen from './screens/ProfileScreen.js';
 import RegisterScreen from './screens/RegisterScreen.js';
 import SignInScreen from './screens/SignInScreen.js';
 import InternshipEditScreen from './screens/InternshipEditScreen.js';
+import UserListScreen from './screens/UserListScreen.js';
 
 
 function App(){
@@ -108,6 +109,10 @@ function App(){
                     <AdminRoute 
                         path="/internshiplist" 
                         component={InternshipListScreen}
+                    ></AdminRoute>
+                    <AdminRoute 
+                        path="/userlist" 
+                        component={UserListScreen}
                     ></AdminRoute>
                     <Route path="/" component={HomeScreen} exact></Route>
                 </main>
