@@ -5,19 +5,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build",
+    "build": "cd UI && npm install && npm run build",
     "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/intern222/intern-app.git"
+    "url": "git+https://github.com/intern222/intern-test.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/intern222/intern-app/issues"
+    "url": "https://github.com/intern222/intern-test/issues"
   },
-  "homepage": "https://github.com/intern222/intern-app#readme",
+  "homepage": "https://github.com/intern222/intern-test#readme",
   "devDependencies": {
     "nodemon": "^2.0.6"
   },
