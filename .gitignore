@@ -1,5 +1,6 @@
 # dependencies
 node_modules
+UI/node_modules
 /.pnp
 .pnp.js
 
