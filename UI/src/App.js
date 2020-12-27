@@ -72,26 +72,36 @@ function App(){
                                 <li><Link className="ola" to="/signin" >Sign in</Link></li>
                             )
                         }
+                        {userInfo && userInfo.isCompany && (
+                            <li className="dropdown">
+                                <Link className="ola" to="#company">
+                                    Company
+                                </Link>
+                                <ul className="dropdown-content">
+                                    <Link className="ola" to="/internshiplist/company">
+                                        Internships
+                                    </Link>
+                                </ul>
+                            </li>
+                        )}
                         {userInfo && userInfo.isAdmin && (
                             <li className="dropdown">
-                            <Link className="ola" to="#admin">
-                                Admin 
-                            </Link>
-                            <ul className="dropdown-content">
-                                <Link className="ola" to="/dashboard">
-                                    Dashboard
+                                <Link className="ola" to="#admin">
+                                    Admin 
                                 </Link>
-                                <Link className="ola" to="/internshiplist">
-                                    Internships
-                                </Link>
-                                <Link className="ola" to="/userlist">
-                                    Users
-                                </Link>
-                            </ul>
-                        </li>
-                        )
-
-                        }
+                                <ul className="dropdown-content">
+                                    <Link className="ola" to="/dashboard">
+                                        Dashboard
+                                    </Link>
+                                    <Link className="ola" to="/internshiplist">
+                                        Internships
+                                    </Link>
+                                    <Link className="ola" to="/userlist">
+                                        Users
+                                    </Link>
+                                </ul>
+                            </li>
+                        )}
                     </div>
                 </header>
                 <main>
