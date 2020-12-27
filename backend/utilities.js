@@ -7,6 +7,7 @@ export const generateToken = (user) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isCompany: user.isCompany,
     },
     process.env.JWT_SECRET || 'Pai.natal123',
     {
@@ -35,11 +36,28 @@ export const isAuth = (req, res, next) => {
     res.status(401).send({ message: 'No Token' });
   }
 };
+
 export const isAdmin = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next();
   } else {
     res.status(401).send({ message: 'Invalid Admin Token' });
+  }
+};
+
+export const isCompany = (req, res, next) => {
+  if (req.user && req.user.isCompany) {
+    next();
+  } else {
+    res.status(401).send({ message: 'Invalid Company Token' });
+  }
+};
+
+export const isCompanyOrAdmin = (req, res, next) => {
+  if (req.user && (req.user.isAdmin || req.user.isAdmin)) {
+    next();
+  } else {
+    res.status(401).send({ message: 'Invalid Company/Admin Token' });
   }
 };
 

@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const internshipSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
+    seller: {type: mongoose.Schema.Types.ObjectId},
     image: { type: String, required: true },
     company: { type: String, required: true },
     location: { type: String, required: true },

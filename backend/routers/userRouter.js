@@ -27,6 +27,7 @@ userRouter.post(
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
+          isCompany: user.isCompany,
           token: generateToken(user),
         });
         return;
@@ -50,6 +51,7 @@ userRouter.post(
       name: createdUser.name,
       email: createdUser.email,
       isAdmin: createdUser.isAdmin,
+      isCompany: user.isCompany,
       token: generateToken(createdUser),
     });
   })
@@ -74,6 +76,11 @@ userRouter.put(
       if (user) {
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
+        if(user.isCompany){
+          user.company.name = req.body.companyName || user.company.name;
+          user.company.logo = req.body.companyLogo || user.company.logo;
+          user.company.description = req.body.companyDescription || user.company.description;
+        }
         if (req.body.password) {
           user.password = bcrypt.hashSync(req.body.password, 8);
         }
@@ -83,6 +90,7 @@ userRouter.put(
           name: updatedUser.name,
           email: updatedUser.email,
           isAdmin: updatedUser.isAdmin,
+          isCompany: user.isCompany,
           token: generateToken(updatedUser),
         });
       }

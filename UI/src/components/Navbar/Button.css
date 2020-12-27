@@ -1,0 +1,25 @@
+:root {
+    --primary: #0075B5;
+  }
+  
+  .btn {
+    padding: 4px 15px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    background-color: var(--primary);
+    margin-right: 2rem;
+    font-family: 'nunito';
+    font-weight: bold;
+  }
+  
+  .btn:hover {
+    padding: 4px 15px;
+    transition: all 0.3s ease-out;
+    background: #ffff;
+    color: black;
+    transition: 250ms;
+}
