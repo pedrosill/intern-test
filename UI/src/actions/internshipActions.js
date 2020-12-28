@@ -17,21 +17,15 @@ import {
     INTERNSHIP_DELETE_SUCCESS, 
 } from "../constants/internshipConstants";
 
-export const listInternships = ({company=''}) => async (dispatch) => {
+export const listInternships = () => async (dispatch) => {
     dispatch({
         type: INTERNSHIP_LIST_REQUEST
     });
     try{
-        const { data } = await Axios.get(`api/internships?company=${company}`);
-        dispatch({
-            type: INTERNSHIP_LIST_SUCCESS, 
-            payload: data
-        });
+        const { data } = await Axios.get('/api/internships');
+        dispatch({ type: INTERNSHIP_LIST_SUCCESS, payload: data});
     } catch(error){
-        dispatch({
-            type: INTERNSHIP_LIST_FAIL, 
-            payload : error.message
-        });
+        dispatch({ type: INTERNSHIP_LIST_FAIL, payload : error.message});
     }
 };
 

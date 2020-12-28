@@ -27,7 +27,6 @@ userRouter.post(
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
-          isCompany: user.isCompany,
           token: generateToken(user),
         });
         return;
@@ -51,7 +50,6 @@ userRouter.post(
       name: createdUser.name,
       email: createdUser.email,
       isAdmin: createdUser.isAdmin,
-      isCompany: user.isCompany,
       token: generateToken(createdUser),
     });
   })
@@ -69,55 +67,24 @@ userRouter.get(
   })
 );
 userRouter.put(
-    '/profile',
-    isAuth,
-    expressAsyncHandler(async (req, res) => {
-      const user = await User.findById(req.user._id);
-      if (user) {
-        user.name = req.body.name || user.name;
-        user.email = req.body.email || user.email;
-        if(user.isCompany){
-          user.company.name = req.body.companyName || user.company.name;
-          user.company.logo = req.body.companyLogo || user.company.logo;
-          user.company.description = req.body.companyDescription || user.company.description;
-        }
-        if (req.body.password) {
-          user.password = bcrypt.hashSync(req.body.password, 8);
-        }
-        const updatedUser = await user.save();
-        res.send({
-          _id: updatedUser._id,
-          name: updatedUser.name,
-          email: updatedUser.email,
-          isAdmin: updatedUser.isAdmin,
-          isCompany: user.isCompany,
-          token: generateToken(updatedUser),
-        });
-      }
-    })
-  );
-
-userRouter.get(
-  '/',
+  '/profile',
   isAuth,
-  isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const users = await User.find({});
-    res.send(users);
-  })
-);
-
-userRouter.delete(
-  '/:id',
-  isAuth,
-  isAdmin,
-  expressAsyncHandler(async (req, res) => {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.user._id);
     if (user) {
-      const deleteUser = await user.remove();
-      res.send({ message: 'User Deleted', user: deleteUser });
-    } else {
-      res.status(404).send({ message: 'User Not Found' });
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      if (req.body.password) {
+        user.password = bcrypt.hashSync(req.body.password, 8);
+      }
+      const updatedUser = await user.save();
+      res.send({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        token: generateToken(updatedUser),
+      });
     }
   })
 );
@@ -139,7 +106,7 @@ userRouter.delete(
   expressAsyncHandler(async(req, res) =>{
     const user = await User.findById(req.params.id);
     if (user) {
-      if (user.email === 'diogomm26@gmail.com') {
+      if (user.isAdmin === true) {
         res.status(400).send({ message: 'Can Not Delete Admin User' });
         return;
       }
@@ -160,7 +127,6 @@ userRouter.put(
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      user.isCompany = req.body.isCompany || user.isCompany;
       user.isAdmin = req.body.isAdmin || user.isAdmin;
       const updatedUser = await user.save();
       res.send({ message: 'User Updated', user: updatedUser });

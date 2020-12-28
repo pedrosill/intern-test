@@ -13,10 +13,11 @@ import InternshipEditScreen from './screens/InternshipEditScreen.js';
 import UserListScreen from './screens/UserListScreen.js';
 import UserEditScreen from './screens/UserEditScreen.js';
 import Navbar from './components/Navbar/Navbar.js';
-import CompanyRoute from './components/CompanyRoute.js';
+
 
 
 function App(){
+
     return(
         <BrowserRouter>
             <div className = "grid-container">
@@ -36,22 +37,16 @@ function App(){
                     ></PrivateRoute>
                     <AdminRoute 
                         path="/internshiplist" 
-                        component={InternshipListScreen} 
-                        exact
+                        component={InternshipListScreen}
                     ></AdminRoute>
                     <AdminRoute 
                         path="/userlist" 
                         component={UserListScreen}
-                        exact
                     ></AdminRoute>
                     <AdminRoute 
                         path="/user/:id/edit" 
                         component={UserEditScreen}
                     ></AdminRoute>
-                    <CompanyRoute 
-                        path="/internshiplist/company"
-                        component={InternshipListScreen}
-                    ></CompanyRoute>
                     <Route path="/" component={HomeScreen} exact></Route>
                 </main>
                 <footer className="row center">© 2020 by Intern</footer>

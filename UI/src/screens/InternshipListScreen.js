@@ -6,7 +6,6 @@ import MessageBox from '../components/MessageBox';
 import { INTERNSHIP_CREATE_RESET, INTERNSHIP_DELETE_RESET } from '../constants/internshipConstants';
 
 export default function InternshipListScreen(props){
-    const companyMode = props.match.path.indexOf('/company') >= 0;
     const internshipList = useSelector(state => state.internshipList);
     const {loading, error, internships} = internshipList;
     
@@ -24,9 +23,6 @@ export default function InternshipListScreen(props){
         error: errorDelete, 
         success: successDelete,
     } = internshipDelete;
-
-    const userSignin = useSelector((state) => state.userSignin);
-    const { userInfo } = userSignin;
     
     const dispatch = useDispatch();
 
@@ -38,16 +34,8 @@ export default function InternshipListScreen(props){
         if(successDelete){
             dispatch({type: INTERNSHIP_DELETE_RESET});
         }
-        dispatch(listInternships({company: companyMode ? userInfo._id: ''}));
-    }, [
-        dispatch,
-        userInfo, 
-        companyMode, 
-        createdInternship,  
-        props.history, 
-        successCreate, 
-        successDelete
-    ]);
+        dispatch(listInternships());
+    }, [createdInternship, dispatch, props.history, successCreate, successDelete]);
 
     const deleteHandler = (internship) =>{
         if(window.confirm('Are you sure you want to delete?')){
@@ -59,7 +47,7 @@ export default function InternshipListScreen(props){
     };
 
 
-    return (
+    return(
         <div>
             <div className="row">
                 <h1>Internships</h1>
@@ -71,64 +59,57 @@ export default function InternshipListScreen(props){
                     Create Internship
                 </button>
             </div>
-
             {loadingDelete && <LoadingBox></LoadingBox>}
             {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
 
             {loadingCreate && <LoadingBox></LoadingBox>}
             {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
-            {
-                loading ? (<LoadingBox></LoadingBox>) 
-                :
-                error ? (<MessageBox variant="danger">{error}</MessageBox>)
-                : 
-                (
-                    <>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>COMPANY</th>
-                                    <th>LOCATION</th>
-                                    <th>TYPE</th>
-                                    <th>ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    internships.map((internship) => (
-                                        <tr key = {internship._id}>
-                                            <td>{internship._id}</td>
-                                            <td>{internship.name}</td>
-                                            <td>{internship.company}</td>
-                                            <td>{internship.location}</td>
-                                            <td>{internship.type}</td>
-                                            <td>
-                                                <button 
-                                                    type="button" 
-                                                    className="small" 
-                                                    onClick={() => 
-                                                        props.history.push(`/internship/${internship._id}/edit`)}
-                                                >
-                                                    Edit
-                                                </button>
-                                                <button 
-                                                    type="button" 
-                                                    className="small" 
-                                                    onClick = {() => deleteHandler(internship)}
-                                                >
-                                                    Delete
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
-                    </>                                
-                )
-            }
+            {loading ? (
+                <LoadingBox></LoadingBox>
+            ) : error ? (
+                <MessageBox variant="danger">{error}</MessageBox>
+            ) : (
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>COMPANY</th>
+                            <th>LOCATION</th>
+                            <th>TYPE</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {internships.map((internship) => (
+                            <tr key = {internship._id}>
+                                <td>{internship._id}</td>
+                                <td>{internship.name}</td>
+                                <td>{internship.company}</td>
+                                <td>{internship.location}</td>
+                                <td>{internship.type}</td>
+                                <td>
+                                    <button 
+                                        type="button" 
+                                        className="small" 
+                                        onClick={() => 
+                                            props.history.push(`/internship/${internship._id}/edit`)}
+                                    >
+                                        Edit
+                                    </button>
+                                    <button 
+                                        type="button" 
+                                        className="small" 
+                                        onClick = {() => deleteHandler(internship)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </div>
-    );
+    )
 }

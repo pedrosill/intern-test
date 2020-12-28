@@ -11,7 +11,6 @@ export default function UserEditScreen(props) {
   const userId = props.match.params.id;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [isCompany, setIsCompany] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
   const userDetails = useSelector((state) => state.userDetails);
@@ -35,7 +34,6 @@ export default function UserEditScreen(props) {
     } else {
       setName(user.name);
       setEmail(user.email);
-      setIsCompany(user.isCompany);
       setIsAdmin(user.isAdmin);
     }
   }, [dispatch, props.history, successUpdate, user, userId]);
@@ -43,7 +41,7 @@ export default function UserEditScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     // dispatch update user
-    dispatch(updateUser({ _id: userId, name, email, isCompany, isAdmin }));
+    dispatch(updateUser({ _id: userId, name, email, isAdmin }));
   };
   return (
     <div>
@@ -79,15 +77,6 @@ export default function UserEditScreen(props) {
                 placeholder="Enter email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <label htmlFor="isCompany">Is Company</label>
-              <input
-                id="isCompany"
-                type="checkbox"
-                checked={isCompany}
-                onChange={(e) => setIsCompany(e.target.checked)}
               ></input>
             </div>
             <div>

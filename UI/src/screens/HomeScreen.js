@@ -12,7 +12,7 @@ export default function HomeScreen() {
     const {loading, error, internships} = internshipList;
 
     useEffect(() => {
-        dispatch(listInternships({}));
+        dispatch(listInternships());
     }, [dispatch]);
 
     return (

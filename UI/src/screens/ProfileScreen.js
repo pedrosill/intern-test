@@ -11,10 +11,6 @@ export default function ProfileScreen() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [companyName, setCompanyName] = useState('');
-    const [companyLogo, setCompanyLogo] = useState('');
-    const [companyDescription, setCompanyDescription] = useState('');
-
     const userSignin = useSelector( state => state.userSignin);
     const {userInfo} = userSignin;
     const userDetails = useSelector(state => state.userDetails);
@@ -36,36 +32,21 @@ export default function ProfileScreen() {
         } else{
             setName(user.Name);
             setEmail(user.Email);
-            if(user.company){
-                setCompanyName(user.company.name);
-                setCompanyLogo(user.company.logo);
-                setCompanyDescription(user.company.description);
-            }
         }
     }, [dispatch, userInfo._id, user]);
+
+    const signoutHandler = () => {
+        dispatch(signout());
+    };
 
     const submitHandler = (e) =>{
         e.preventDefault();
         if(password !== confirmPassword){
             alert('Password and Confirm Password Are Not Matched');
         } else {
-            dispatch(
-                updateUserProfile({ 
-                    userId: user._id, 
-                    name, 
-                    email, 
-                    password, 
-                    companyName,
-                    companyLogo,
-                    companyDescription,
-                })
-            );
+            dispatch(updateUserProfile({ userId: user._id, name, email, password}));
         }
-    };
-
-    const signoutHandler = () => {
-        dispatch(signout());
-    };
+    }
 
     return(
         <div>
@@ -125,58 +106,16 @@ export default function ProfileScreen() {
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                 ></input> 
                         </div>
-                        {
-                            user.isCompany && (
-                                <>
-                                    <div>
-                                        <h2>Company</h2>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="companyName">Company Name</label>
-                                        <input 
-                                            id="companyName" 
-                                            type="text" 
-                                            placeholder="Enter Company Name"
-                                            value={companyName} 
-                                            onChange={(e) => setCompanyName(e.target.value)}
-                                        >
-                                        </input>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="companyLogo">Company Logo</label>
-                                        <input 
-                                            id="companyLogo" 
-                                            type="text" 
-                                            placeholder="Enter Company Logo"
-                                            value={companyLogo} 
-                                            onChange={(e) => setCompanyLogo(e.target.value)}
-                                        >
-                                        </input>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="companyDescription">Company Description</label>
-                                        <input 
-                                            id="companyDescription" 
-                                            type="text" 
-                                            placeholder="Enter Company Description"
-                                            value={companyDescription} 
-                                            onChange={(e) => setCompanyDescription(e.target.value)}
-                                        >
-                                        </input>
-                                    </div>
-                                </>
-                            )
-                        }
                         <div>
                             <label/>
                             <button className="primary" type="submit">
                                 Update
                             </button>
-                            <div>
-                                <button className="primary" to="/" onClick={signoutHandler}>
-                                    Sign Out
-                                </button>
-                            </div>
+                        </div>
+                        <div>
+                            <button className="primary" to="/" onClick={signoutHandler}>
+                                Sign Out
+                            </button>
                         </div>
                     </>
                 )}

@@ -6,12 +6,6 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false, required: true },
-    isCompany: { type: Boolean, default: false, required: true },
-    company: {
-      name: String,
-      logo: String,
-      description: String,
-    },
   },
   {
     timestamps: true,

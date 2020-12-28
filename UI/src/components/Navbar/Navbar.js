@@ -82,26 +82,18 @@ function Navbar() {
                             </li>
                         ) :
                         (
-                            <li
-                                className='nav-item'
+                            <li>
+                            <Link
+                              to='/signin'
+                              className='nav-links-mobile'
+                              onClick={closeMobileMenu}
+                              
                             >
-                               <Button/>
-                            </li>
-                        )
-                    }
-                    {
-                        userInfo && userInfo.isCompany && (
-                            <li
-                                className='nav-item'
-                            >   
-                                <Link 
-                                    to="/internshiplist/company"
-                                    className='nav-links'
-                                    onClick={closeMobileMenu}
-                                >
-                                    CInternships 
-                                </Link>
-                            </li>
+                              Sign in
+                            </Link>
+                            <Button/>
+                          </li>
+                            
                         )
                     }
                     {
@@ -134,6 +126,7 @@ function Navbar() {
                             </li>
                         )
                     }
+                    
                 </ul>
             </nav>
         </>
