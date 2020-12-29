@@ -7,6 +7,7 @@ body{
   height: 100vh;
   font-size: 1.6rem;
   font-family: 'Nunito', sans-serif;
+
 }
 
 #root{
@@ -121,6 +122,13 @@ button.small {
   background-color:#f0c040;
   color: white;
   margin: 10px;
+}
+
+button.small1 {
+  font-size: 15px;
+  background-color:#f0c040;
+  color: white;
+
 }
 
 .row{
@@ -321,4 +329,26 @@ img.large{
   margin: 1rem 0;
   display: block; 
 }
+
+/* Search */
+.search button {
+  border-radius: 0 0.5rem 0.5rem 0;
+  border-right: none;
+  margin-right: 0.5rem;
+  width: 40px;
+  height: 42px;
+  background-color: #0075B5;
+}
+.search input {
+  border-radius: 0.5rem 0 0 0.5rem;
+  border-right: none;
+  margin-left: 10px;
+  width: 80px;
+  height: 36px;
+}
+
+
+
+
+
 

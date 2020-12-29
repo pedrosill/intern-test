@@ -15,6 +15,8 @@ import UserEditScreen from './screens/UserEditScreen.js';
 import Navbar from './components/Navbar/Navbar.js';
 import InstitutionRoute from './components/InstitutionRoute.js';
 import InstitutionScreen from './screens/InstitutionScreen.js';
+import SearchScreen from './screens/SearchScreen.js';
+
 
 
 
@@ -29,6 +31,10 @@ function App(){
                     <Route path="/saved/:id?" component={SavedInternshipsScreen}></Route>
                     <Route path="/internship/:id" component={InternshipScreen} exact></Route>
                     <Route path="/internship/:id/edit" component={InternshipEditScreen} exact></Route>
+                    <Route 
+                        path="/search/name/:name?" 
+                        component={SearchScreen} 
+                        exact></Route>
                     <Route 
                         path="/signin" 
                         component={SignInScreen}

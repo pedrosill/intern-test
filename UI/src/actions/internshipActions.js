@@ -17,12 +17,14 @@ import {
     INTERNSHIP_DELETE_SUCCESS, 
 } from "../constants/internshipConstants";
 
-export const listInternships = ({institution=''}) => async (dispatch) => {
+export const listInternships = ({institution='', name=''}) => async (dispatch) => {
     dispatch({
         type: INTERNSHIP_LIST_REQUEST
     });
     try{
-        const { data } = await Axios.get(`/api/internships?institution=${institution}`);
+        const { data } = await Axios.get(
+            `/api/internships?institution=${institution}&name=${name}`
+        );
         dispatch({ type: INTERNSHIP_LIST_SUCCESS, payload: data});
     } catch(error){
         dispatch({ type: INTERNSHIP_LIST_FAIL, payload : error.message});

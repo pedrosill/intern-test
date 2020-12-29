@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from './Button.js';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import './Navbar.css';
 import { useSelector } from 'react-redux';
+import SearchBox from '../SearchBox.js';
 
 function Navbar() {
 
@@ -22,7 +23,14 @@ function Navbar() {
             <nav className='navbar'>
                 <Link to='/' className='navbar-logo'>
                     Intern
-            </Link>
+                </Link>
+                <div>
+                    <Route
+                        render={({ history }) => (
+                            <SearchBox history={history}></SearchBox>
+                        )}
+                    ></Route>
+                </div>
                 <div className='menu-icon' onClick={handleClick}>
                     <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
                 </div>

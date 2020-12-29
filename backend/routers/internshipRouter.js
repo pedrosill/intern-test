@@ -9,9 +9,14 @@ const internshipRouter = express.Router();
 internshipRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
+    const name = req.query.name || '';
     const institution = req.query.institution || '';
+    const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
     const institutionFilter = institution ? { institution}: {};
-    const internships = await Internship.find({...institutionFilter}).populate('institution', 'institution.name institution.logo');
+    const internships = await Internship.find({
+      ...institutionFilter, 
+      ...nameFilter
+    }).populate('institution', 'institution.name institution.logo');
     res.send(internships);
   })
 );
@@ -45,7 +50,7 @@ internshipRouter.post(
     const internship = new Internship({
       name: 'sample name ' + Date.now(),
       institution: req.user._id,
-      image: '/images/p1.jpg',
+      image: '../images/micrologo1.jpg',
       company: 'sample name',
       location: 'sample location',
       candidates: 0,
@@ -87,7 +92,7 @@ internshipRouter.put(
 internshipRouter.delete(
   '/:id',
   isAuth,
-  isAdmin,
+  isInstitutionOrAdmin,
   expressAsyncHandler(async (req, res) => {
     const internship = await Internship.findById(req.params.id);
     if (internship) {
