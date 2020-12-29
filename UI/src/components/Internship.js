@@ -20,9 +20,13 @@ export default function Internship(props) {
                     <div className="value">{internship.location}</div>
                     <div className="type">Location</div>
                 </div>
-                <div className="stat border">
-                    <div className="value">{internship.candidates}</div>
-                    <div className="type">Candidates</div>
+                <div className="stat">
+
+                        <Link  className="link" to={`/institution/${internship.institution._id}`}>
+                            {internship.institution.institution.name}                
+                        </Link>
+
+                    <div className="type">Company</div>
                 </div>
                 <div className="stat">
                     <div className="value">{internship.type}</div>

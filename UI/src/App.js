@@ -14,6 +14,7 @@ import UserListScreen from './screens/UserListScreen.js';
 import UserEditScreen from './screens/UserEditScreen.js';
 import Navbar from './components/Navbar/Navbar.js';
 import InstitutionRoute from './components/InstitutionRoute.js';
+import InstitutionScreen from './screens/InstitutionScreen.js';
 
 
 
@@ -24,6 +25,7 @@ function App(){
             <div className = "grid-container">
                 <Navbar/>
                 <main>
+                    <Route path="/institution/:id" component={InstitutionScreen}></Route>
                     <Route path="/saved/:id?" component={SavedInternshipsScreen}></Route>
                     <Route path="/internship/:id" component={InternshipScreen} exact></Route>
                     <Route path="/internship/:id/edit" component={InternshipEditScreen} exact></Route>

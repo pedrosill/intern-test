@@ -11,7 +11,7 @@ internshipRouter.get(
   expressAsyncHandler(async (req, res) => {
     const institution = req.query.institution || '';
     const institutionFilter = institution ? { institution}: {};
-    const internships = await Internship.find({...institutionFilter});
+    const internships = await Internship.find({...institutionFilter}).populate('institution', 'institution.name institution.logo');
     res.send(internships);
   })
 );
@@ -28,7 +28,7 @@ internshipRouter.get(
 internshipRouter.get(
   '/:id',
   expressAsyncHandler(async (req, res) => {
-    const internship = await Internship.findById(req.params.id);
+    const internship = await Internship.findById(req.params.id).populate('institution', 'institution.name institution.logo ');
     if (internship) {
       res.send(internship);
     } else {

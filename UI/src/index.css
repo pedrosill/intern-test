@@ -50,7 +50,7 @@ li{
 li a{
     text-decoration: none;
     display:inline-block;
-    color: #fff;
+    color: black;
     font-family: 'Nunito', sans-serif;
     font-size: 17px;
     letter-spacing: 1.5px;
@@ -142,6 +142,9 @@ button.small {
 }
 .col-2{
   flex: 2 1 50rem;
+}
+.col-3 {
+  flex: 32 1 75rem;
 }
 .min{
   min-width: 10rem; 
@@ -241,6 +244,24 @@ img.large{
   justify-content: center;
   flex-direction: column;
   padding: white;
+}
+.card-stats .link{
+  color: #ffff;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 14px;
+}
+.card-stats .link::after{
+  content: '';
+  display: block;
+  width: 0;
+  height: 1.6px;
+  background: #fff;
+  transition: width .3s; 
+}
+.card-stats .link:hover:after{
+  width:100%;
+  transition: width .3s; 
 }
 .card-stats .type{
   font-size: 9px;

@@ -46,7 +46,8 @@ export default function SavedInternshipsScreen(props) {
                                         <div className="row">
                                             <div>
                                                 <Link to={`/internship/${item.internship}`}>
-                                                    <img className="small"
+                                                    <img 
+                                                        className="small"
                                                         src={item.image}
                                                         alt={item.name}
                                                     />

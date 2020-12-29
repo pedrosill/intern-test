@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { detailsInternship } from '../actions/internshipActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
@@ -40,7 +41,12 @@ export default function InternshipScreen(props) {
                                             <h1>{internship.name}</h1>
                                         </li>
                                         <li>
-                                            Company : {internship.company}
+                                            
+                                            <h1>
+                                               <Link to={`/institution/${internship.institution._id}`}>
+                                                    {internship.institution.institution.name}   
+                                                </Link> 
+                                            </h1>
                                         </li>
                                         <p></p>
                                         <li>
