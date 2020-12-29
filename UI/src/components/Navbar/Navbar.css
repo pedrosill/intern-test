@@ -100,7 +100,7 @@
 
     .nav-links {
         text-align: center;
-        padding: 2rem;
+        margin-left: -25px;
         width: 100%;
         display: table;
     }

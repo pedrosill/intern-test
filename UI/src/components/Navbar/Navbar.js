@@ -82,7 +82,9 @@ function Navbar() {
                             </li>
                         ) :
                         (
-                            <li>
+                            <li
+                                className='nav-item'
+                            >
                             <Link
                               to='/signin'
                               className='nav-links-mobile'

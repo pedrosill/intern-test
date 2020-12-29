@@ -30,8 +30,8 @@ export default function ProfileScreen() {
             dispatch({type: USER_UPDATE_PROFILE_RESET});
             dispatch(detailsUser(userInfo._id));
         } else{
-            setName(user.Name);
-            setEmail(user.Email);
+            setName(user.name);
+            setEmail(user.email);
         }
     }, [dispatch, userInfo._id, user]);
 
