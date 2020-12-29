@@ -18,6 +18,7 @@ export const addToSaved = (internshipId) => async (dispatch, getState) => {
             type : data.type,
             date : data.date,
             description : data.description,
+            institution: data.institution,
         },
     });
     localStorage.setItem('savedItems', JSON.stringify(getState().saved.savedItems)); 

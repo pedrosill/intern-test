@@ -11,6 +11,7 @@ export default function UserEditScreen(props) {
   const userId = props.match.params.id;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [isInstitution, setIsInstitution] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
   const userDetails = useSelector((state) => state.userDetails);
@@ -34,6 +35,7 @@ export default function UserEditScreen(props) {
     } else {
       setName(user.name);
       setEmail(user.email);
+      setIsInstitution(user.isInstitution);
       setIsAdmin(user.isAdmin);
     }
   }, [dispatch, props.history, successUpdate, user, userId]);
@@ -41,7 +43,7 @@ export default function UserEditScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     // dispatch update user
-    dispatch(updateUser({ _id: userId, name, email, isAdmin }));
+    dispatch(updateUser({ _id: userId, name, email, isInstitution, isAdmin }));
   };
   return (
     <div>
@@ -77,6 +79,15 @@ export default function UserEditScreen(props) {
                 placeholder="Enter email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="isInstitution">Is Institution</label>
+              <input
+                id="isInstitution"
+                type="checkbox"
+                checked={isInstitution}
+                onChange={(e) => setIsInstitution(e.target.checked)}
               ></input>
             </div>
             <div>

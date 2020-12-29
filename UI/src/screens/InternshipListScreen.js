@@ -6,6 +6,8 @@ import MessageBox from '../components/MessageBox';
 import { INTERNSHIP_CREATE_RESET, INTERNSHIP_DELETE_RESET } from '../constants/internshipConstants';
 
 export default function InternshipListScreen(props){
+    const institutionMode = props.match.path.indexOf('/institution')>=0;
+
     const internshipList = useSelector(state => state.internshipList);
     const {loading, error, internships} = internshipList;
     
@@ -23,6 +25,9 @@ export default function InternshipListScreen(props){
         error: errorDelete, 
         success: successDelete,
     } = internshipDelete;
+
+    const userSignin = useSelector( (state) => state.userSignin);
+    const {userInfo} = userSignin;
     
     const dispatch = useDispatch();
 
@@ -34,8 +39,16 @@ export default function InternshipListScreen(props){
         if(successDelete){
             dispatch({type: INTERNSHIP_DELETE_RESET});
         }
-        dispatch(listInternships());
-    }, [createdInternship, dispatch, props.history, successCreate, successDelete]);
+        dispatch(listInternships({ institution: institutionMode ? userInfo._id : ''}));
+    }, [
+        createdInternship, 
+        dispatch, 
+        props.history, 
+        institutionMode,
+        successCreate, 
+        successDelete,
+        userInfo._id,
+    ]);
 
     const deleteHandler = (internship) =>{
         if(window.confirm('Are you sure you want to delete?')){

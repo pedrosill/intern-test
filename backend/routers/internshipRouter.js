@@ -1,7 +1,7 @@
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Internship from '../models/internshipModel.js';
-import { isAdmin, isAuth } from '../utilities.js';
+import { isAdmin, isAuth, isInstitutionOrAdmin } from '../utilities.js';
 import data from '../data.js'
 
 const internshipRouter = express.Router();
@@ -9,7 +9,9 @@ const internshipRouter = express.Router();
 internshipRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
-    const internships = await Internship.find({});
+    const institution = req.query.institution || '';
+    const institutionFilter = institution ? { institution}: {};
+    const internships = await Internship.find({...institutionFilter});
     res.send(internships);
   })
 );
@@ -38,10 +40,11 @@ internshipRouter.get(
 internshipRouter.post(
   '/',
   isAuth,
-  isAdmin,
+  isInstitutionOrAdmin,
   expressAsyncHandler(async (req, res) => {
     const internship = new Internship({
       name: 'sample name ' + Date.now(),
+      institution: req.user._id,
       image: '/images/p1.jpg',
       company: 'sample name',
       location: 'sample location',
@@ -59,7 +62,7 @@ internshipRouter.post(
 internshipRouter.put(
   '/:id',
   isAuth,
-  isAdmin,
+  isInstitutionOrAdmin,
   expressAsyncHandler(async (req, res) => {
     const internshipId = req.params.id;
     const internship = await Internship.findById(internshipId);

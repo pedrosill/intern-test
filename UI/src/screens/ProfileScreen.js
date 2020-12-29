@@ -11,6 +11,10 @@ export default function ProfileScreen() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const [institutionName, setInstitutionName] = useState('');
+    const [institutionLogo, setInstitutionLogo] = useState('');
+    const [institutionDescription, setInstitutionDescription] = useState('');
+
     const userSignin = useSelector( state => state.userSignin);
     const {userInfo} = userSignin;
     const userDetails = useSelector(state => state.userDetails);
@@ -32,6 +36,11 @@ export default function ProfileScreen() {
         } else{
             setName(user.name);
             setEmail(user.email);
+            if(user.institution){
+                setInstitutionName(user.institution.name);
+                setInstitutionLogo(user.institution.logo);
+                setInstitutionDescription(user.institution.description);
+            }
         }
     }, [dispatch, userInfo._id, user]);
 
@@ -44,7 +53,17 @@ export default function ProfileScreen() {
         if(password !== confirmPassword){
             alert('Password and Confirm Password Are Not Matched');
         } else {
-            dispatch(updateUserProfile({ userId: user._id, name, email, password}));
+            dispatch(
+                updateUserProfile({ 
+                    userId: user._id, 
+                    name, 
+                    email, 
+                    password, 
+                    institutionName, 
+                    institutionLogo,
+                    institutionDescription,
+                })
+            );
         }
     }
 
@@ -106,6 +125,41 @@ export default function ProfileScreen() {
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                 ></input> 
                         </div>
+                            {user.isInstitution && (
+                                <>
+                                    <h2>Institution</h2>
+                                    <div>
+                                    <label htmlFor="institutionName">Institution Name</label>
+                                    <input
+                                        id="institutionName"
+                                        type="text"
+                                        placeholder="Enter Institution Name"
+                                        value={institutionName}
+                                        onChange={(e) => setInstitutionName(e.target.value)}
+                                    ></input>
+                                    </div>
+                                    <div>
+                                    <label htmlFor="institutionLogo">Institution Logo</label>
+                                    <input
+                                        id="institutionLogo"
+                                        type="text"
+                                        placeholder="Enter Institution Logo"
+                                        value={institutionLogo}
+                                        onChange={(e) => setInstitutionLogo(e.target.value)}
+                                    ></input>
+                                    </div>
+                                    <div>
+                                    <label htmlFor="institutionDescription">Institution Description</label>
+                                    <input
+                                        id="institutionDescription"
+                                        type="text"
+                                        placeholder="Enter Institution Description"
+                                        value={institutionDescription}
+                                        onChange={(e) => setInstitutionDescription(e.target.value)}
+                                    ></input>
+                                    </div>
+                                </>
+                            )}
                         <div>
                             <label/>
                             <button className="primary" type="submit">

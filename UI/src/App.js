@@ -13,6 +13,7 @@ import InternshipEditScreen from './screens/InternshipEditScreen.js';
 import UserListScreen from './screens/UserListScreen.js';
 import UserEditScreen from './screens/UserEditScreen.js';
 import Navbar from './components/Navbar/Navbar.js';
+import InstitutionRoute from './components/InstitutionRoute.js';
 
 
 
@@ -38,6 +39,7 @@ function App(){
                     <AdminRoute 
                         path="/internshiplist" 
                         component={InternshipListScreen}
+                        exact
                     ></AdminRoute>
                     <AdminRoute 
                         path="/userlist" 
@@ -47,6 +49,10 @@ function App(){
                         path="/user/:id/edit" 
                         component={UserEditScreen}
                     ></AdminRoute>
+                    <InstitutionRoute
+                        path="/internshiplist/institution" 
+                        component={InternshipListScreen}
+                    ></InstitutionRoute>
                     <Route path="/" component={HomeScreen} exact></Route>
                 </main>
                 <footer className="row center">© 2020 by Intern</footer>

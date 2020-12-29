@@ -99,6 +99,21 @@ function Navbar() {
                         )
                     }
                     {
+                        userInfo && userInfo.isInstitution && (
+                            <li
+                                className='nav-item'
+                            >
+                                <Link 
+                                    to="/internshiplist/institution"
+                                    className='nav-links'
+                                    onClick={closeMobileMenu}
+                                >
+                                    IInternships 
+                                </Link>
+                            </li>
+                        )
+                    }
+                    {
                         userInfo && userInfo.isAdmin && (
                             <li
                                 className='nav-item'

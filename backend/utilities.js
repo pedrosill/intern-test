@@ -7,6 +7,7 @@ export const generateToken = (user) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isInstitution: user.isInstitution,
     },
     process.env.JWT_SECRET || 'Pai.natal123',
     {
@@ -35,11 +36,28 @@ export const isAuth = (req, res, next) => {
     res.status(401).send({ message: 'No Token' });
   }
 };
+
 export const isAdmin = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next();
   } else {
     res.status(401).send({ message: 'Invalid Admin Token' });
+  }
+};
+
+export const isInstitution = (req, res, next) => {
+  if (req.user && req.user.isInstitution) {
+    next();
+  } else {
+    res.status(401).send({ message: 'Invalid Institution Token' });
+  }
+};
+
+export const isInstitutionOrAdmin = (req, res, next) => {
+  if (req.user && (req.user.isInstitution || req.user.isAdmin)) {
+    next();
+  } else {
+    res.status(401).send({ message: 'Invalid Institution/Admin Token' });
   }
 };
 
