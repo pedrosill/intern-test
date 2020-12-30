@@ -16,7 +16,7 @@ export default function SearchScreen(props) {
   const dispatch = useDispatch();
 
   const internshipList = useSelector((state) => state.internshipList);
-  const { loading, error, internships } = internshipList;
+  const { loading, error, internships} = internshipList;
 
   const internshipCategoryList = useSelector((state) => state.internshipCategoryList);
   const { 

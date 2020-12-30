@@ -135,8 +135,8 @@ userRouter.put(
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      user.isInstitution = req.body.isInstitution || user.isInstitution;
-      user.isAdmin = req.body.isAdmin || user.isAdmin;
+      user.isInstitution = Boolean(req.body.isInstitution);
+      user.isAdmin = Boolean(req.body.isAdmin);
       const updatedUser = await user.save();
       res.send({ message: 'User Updated', user: updatedUser });
     } else {

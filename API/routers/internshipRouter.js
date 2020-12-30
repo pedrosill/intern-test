@@ -9,6 +9,7 @@ const internshipRouter = express.Router();
 internshipRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
+
     const name = req.query.name || '';
     const category = req.query.category || '';
     const institution = req.query.institution || '';
@@ -22,7 +23,8 @@ internshipRouter.get(
       ...nameFilter,
       ...categoryFilter,
     })
-      .populate('institution', 'institution.name institution.logo');
+      .populate('institution', 'institution.name institution.logo')
+      ;
     res.send(internships);
   })
 );
@@ -39,8 +41,19 @@ internshipRouter.get(
   '/seed',
   expressAsyncHandler(async (req, res) => {
     // await Internship.remove({});
-    const createdInternship = await Internship.insertMany(data.internships);
-    res.send({ createdInternship });
+    const institution = await User.findOne({ isInstitution: true});
+    if (institution) {
+      const internships = data.internships.map((internship) => ({
+        ...internship,
+        institution: institution._id,
+      }));
+      const createdInternship = await Internship.insertMany(internships);
+      res.send({ createdInternship });
+    } else {
+      res 
+        .status(500)
+        .send({ message: 'No institution found. first run /api/users/seed'});
+    }
   })
 );
 
@@ -64,8 +77,8 @@ internshipRouter.post(
     const internship = new Internship({
       name: 'sample name ' + Date.now(),
       institution: req.user._id,
-      image: '../images/micrologo1.jpg',
-      category: 'sample category',
+      image: 'https://internwebapp.s3.eu-central-1.amazonaws.com/IST.png',
+      category: 'Tech',
       company: 'sample name',
       location: 'sample location',
       candidates: 0,
@@ -89,7 +102,7 @@ internshipRouter.put(
     if (internship) {
         internship.name = req.body.name;
         internship.image = req.body.image;
-        internship.category = req.body.company;
+        internship.category = req.body.category;
         internship.company = req.body.company;
         internship.location = req.body.location;
         internship.candidates = req.body.candidates;
