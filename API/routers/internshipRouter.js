@@ -10,14 +10,28 @@ internshipRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
     const name = req.query.name || '';
+    const category = req.query.category || '';
     const institution = req.query.institution || '';
+
     const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
     const institutionFilter = institution ? { institution}: {};
+    const categoryFilter = category ? { category}: {};
+    
     const internships = await Internship.find({
       ...institutionFilter, 
-      ...nameFilter
-    }).populate('institution', 'institution.name institution.logo');
+      ...nameFilter,
+      ...categoryFilter,
+    })
+      .populate('institution', 'institution.name institution.logo');
     res.send(internships);
+  })
+);
+
+internshipRouter.get(
+  '/categories', 
+  expressAsyncHandler(async(req, res) => {
+    const categories = await Internship.find().distinct('category');
+    res.send(categories);
   })
 );
 
@@ -51,6 +65,7 @@ internshipRouter.post(
       name: 'sample name ' + Date.now(),
       institution: req.user._id,
       image: '../images/micrologo1.jpg',
+      category: 'sample category',
       company: 'sample name',
       location: 'sample location',
       candidates: 0,
@@ -74,6 +89,7 @@ internshipRouter.put(
     if (internship) {
         internship.name = req.body.name;
         internship.image = req.body.image;
+        internship.category = req.body.company;
         internship.company = req.body.company;
         internship.location = req.body.location;
         internship.candidates = req.body.candidates;

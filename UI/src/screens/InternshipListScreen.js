@@ -87,6 +87,7 @@ export default function InternshipListScreen(props){
                         <tr>
                             <th>ID</th>
                             <th>NAME</th>
+                            <th>CATEGORY</th>
                             <th>COMPANY</th>
                             <th>LOCATION</th>
                             <th>TYPE</th>
@@ -98,6 +99,7 @@ export default function InternshipListScreen(props){
                             <tr key = {internship._id}>
                                 <td>{internship._id}</td>
                                 <td>{internship.name}</td>
+                                <td>{internship.category}</td>
                                 <td>{internship.company}</td>
                                 <td>{internship.location}</td>
                                 <td>{internship.type}</td>

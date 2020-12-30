@@ -10,6 +10,7 @@ export default function InternshipEditScreen(props){
     const internshipId = props.match.params.id;
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
+    const [category, setCategory] = useState('');
     const [company, setCompany] = useState('');
     const [location, setLocation] = useState('');
     const [candidates, setCandidates] = useState('');
@@ -39,6 +40,7 @@ export default function InternshipEditScreen(props){
         } else{
             setName(internship.name);
             setImage(internship.image); 
+            setCategory(internship.category);
             setCompany(internship.company);
             setLocation(internship.location);
             setCandidates(internship.candidates);
@@ -62,6 +64,7 @@ export default function InternshipEditScreen(props){
                 _id: internshipId, 
                 name, 
                 image,
+                category,
                 company,
                 location,
                 candidates,
@@ -143,6 +146,16 @@ export default function InternshipEditScreen(props){
                         ></input>
                         {loadingUpload && <LoadingBox></LoadingBox>}
                         {errorUpload && <MessageBox variant="danger">{errorUpload}</MessageBox>}
+                    </div>
+                    <div>
+                        <label htmlFor="category">Category</label>
+                        <input 
+                            id="category" 
+                            type="text" 
+                            placeholder="Enter category" 
+                            value={category} 
+                            onChange={(e) => setCategory(e.target.value)}
+                        ></input>
                     </div>
                     <div>
                         <label htmlFor="company">Company</label>

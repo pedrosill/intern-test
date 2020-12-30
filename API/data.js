@@ -21,6 +21,7 @@ const data = {
         {
             name:'Support Engineer Intern',
             image: '../images/micrologo1.jpg',
+            category: 'category',
             company: 'Microsoft',
             location: 'Lisbon',
             candidates: '23',
@@ -32,6 +33,7 @@ const data = {
         {
             name:'Data Analyst Intern',
             image: '../images/amazon.png',
+            category: 'category',
             company: 'Amazon',
             location: 'Porto',
             candidates: '123',
@@ -43,6 +45,7 @@ const data = {
         {
             name:'Bussiness Analyst Intern',
             image: '../images/cisco.jpeg',
+            category: 'category',
             company: 'Cisco',
             location: 'Aveiro',
             candidates: '83',
@@ -54,6 +57,7 @@ const data = {
         {
             name:'Strategic Sales Intern',
             image: '../images/google.png',
+            category: 'category',
             company: 'Google',
             location: 'Faro',
             candidates: '13',
@@ -65,6 +69,7 @@ const data = {
         {
             name:'Project Manager Intern',
             image: '../images/sonae.png',
+            category: 'category',
             company: 'Sonae',
             location: 'Lisbon',
             candidates: '43',
@@ -76,6 +81,7 @@ const data = {
         {
             name:'RH Intern',
             image: '../images/NOS.png',
+            category: 'category',
             company: 'NOS',
             location: 'Lisboa',
             candidates: '27',

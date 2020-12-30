@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute.js';
 import AdminRoute from './components/AdminRoute.js';
@@ -16,11 +16,16 @@ import Navbar from './components/Navbar/Navbar.js';
 import InstitutionRoute from './components/InstitutionRoute.js';
 import InstitutionScreen from './screens/InstitutionScreen.js';
 import SearchScreen from './screens/SearchScreen.js';
-
-
-
+import { useDispatch } from 'react-redux';
+import { listInternshipCategories } from './actions/internshipActions.js';
 
 function App(){
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(listInternshipCategories());
+    }, [dispatch]);
 
     return(
         <BrowserRouter>
@@ -34,7 +39,18 @@ function App(){
                     <Route 
                         path="/search/name/:name?" 
                         component={SearchScreen} 
-                        exact></Route>
+                        exact
+                    ></Route>
+                    <Route 
+                        path="/search/category/:category" 
+                        component={SearchScreen} 
+                        exact
+                    ></Route>
+                    <Route 
+                        path="/search/category/:category/name/:name" 
+                        component={SearchScreen} 
+                        exact
+                    ></Route>
                     <Route 
                         path="/signin" 
                         component={SignInScreen}
@@ -63,7 +79,7 @@ function App(){
                     ></InstitutionRoute>
                     <Route path="/" component={HomeScreen} exact></Route>
                 </main>
-                <footer className="row center">© 2020 by Intern</footer>
+                <footer className="row center">© 2020 Intern</footer>
             </div>
         </BrowserRouter>
     );

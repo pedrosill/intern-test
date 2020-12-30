@@ -14,20 +14,39 @@ import {
     INTERNSHIP_LIST_SUCCESS, 
     INTERNSHIP_DELETE_FAIL, 
     INTERNSHIP_DELETE_REQUEST, 
-    INTERNSHIP_DELETE_SUCCESS, 
+    INTERNSHIP_DELETE_SUCCESS,
+    INTERNSHIP_CATEGORY_LIST_REQUEST,
+    INTERNSHIP_CATEGORY_LIST_SUCCESS,
+    INTERNSHIP_CATEGORY_LIST_FAIL, 
 } from "../constants/internshipConstants";
 
-export const listInternships = ({institution='', name=''}) => async (dispatch) => {
+export const listInternships = ({
+    institution='',
+    name='', 
+    category='',
+}) => async (dispatch) => {
     dispatch({
         type: INTERNSHIP_LIST_REQUEST
     });
     try{
         const { data } = await Axios.get(
-            `/api/internships?institution=${institution}&name=${name}`
+            `/api/internships?institution=${institution}&name=${name}&category=${category}`
         );
         dispatch({ type: INTERNSHIP_LIST_SUCCESS, payload: data});
     } catch(error){
         dispatch({ type: INTERNSHIP_LIST_FAIL, payload : error.message});
+    }
+};
+
+export const listInternshipCategories = () => async (dispatch) => {
+    dispatch({
+        type: INTERNSHIP_CATEGORY_LIST_REQUEST
+    });
+    try{
+        const { data } = await Axios.get(`/api/internships/categories`);
+        dispatch({ type: INTERNSHIP_CATEGORY_LIST_SUCCESS, payload: data});
+    } catch(error){
+        dispatch({ type: INTERNSHIP_CATEGORY_LIST_FAIL, payload : error.message});
     }
 };
 

@@ -28,7 +28,7 @@ body{
 
 .brand{
   text-decoration: none;
-  color: floralwhite;
+  color: #ffffff;
   font-size: 4rem;
   letter-spacing: 1.5px;
   font-weight: bold;
@@ -46,6 +46,7 @@ body{
 
 li{
     display: inline-block;
+    
 }
 
 li a{
