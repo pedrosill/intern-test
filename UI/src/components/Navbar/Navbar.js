@@ -114,7 +114,7 @@ function Navbar() {
                                     className='nav-links'
                                     onClick={closeMobileMenu}
                                 >
-                                    IInternships 
+                                    Internships 
                                 </Link>
                             </li>
                         )
@@ -129,7 +129,7 @@ function Navbar() {
                                     className='nav-links'
                                     onClick={closeMobileMenu}
                                 >
-                                    AInternships 
+                                    Internships 
                                 </Link>
                             </li>
                         )

@@ -23,8 +23,11 @@ app.use('/api/internships', internshipRouter);
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-
+app.use(express.static(path.join(__dirname, '/UI/build')));
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/UI/build/index.html'))
+);
 
 app.listen(config.PORT, () => {
-  console.log('Server started at http://localhost:5000');
+  console.log('Server started at http://localhost:6000');
 });
