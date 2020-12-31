@@ -8,4 +8,6 @@ export function Button() {
       <button className='btn'>Sign in</button>
     </Link>
   );
-}
+};
+
+

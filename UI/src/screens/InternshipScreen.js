@@ -83,7 +83,7 @@ export default function InternshipScreen(props) {
                                             {
                                                 internship.status === 'Open' && (
                                                     <li>
-                                                        <button className="primary block" onClick={applyHandler}> Apply </button>
+                                                        <button className="iscreen" onClick={applyHandler}> Apply </button>
                                                     </li>
                                                 )
                                             }
@@ -91,7 +91,7 @@ export default function InternshipScreen(props) {
                                             {
                                                 internship.status === 'Open' && (
                                                     <li>
-                                                        <button onClick={addToCartHandler} className="primary block">Save</button>
+                                                        <button onClick={addToCartHandler} className="iscreen">Save</button>
                                                     </li>
                                                 )
                                             }

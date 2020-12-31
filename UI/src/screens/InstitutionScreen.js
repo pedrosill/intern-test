@@ -39,7 +39,7 @@ export default function InstitutionScreen(props) {
                     (
                         <ul className="card1 card-body">
                             <li>
-                                <div className="row">
+                                <div className="row top">
                                     <div>
                                         <img 
                                             className= "small"
@@ -56,9 +56,6 @@ export default function InstitutionScreen(props) {
                             </li>
                             <li>
                                 <a href={`mailto:${user.email}`}>Contact Institution</a>
-                            </li>
-                            <li>
-                                {user.institution.description}
                             </li>
                         </ul>
                     )

@@ -124,7 +124,11 @@ button.small {
   color: white;
   margin: 10px;
 }
-
+button.iscreen{
+  background-color:#f0c040;
+  color: white;
+  width: 200px;
+}
 button.small1 {
   font-size: 15px;
   background-color:#f0c040;
@@ -199,7 +203,7 @@ img.large{
   font-family: Arial, Helvetica, sans-serif;
   box-shadow: 0.1px 0.1px 15px #dfdfdf;
 
-  margin: 7px ;
+  margin: 30px ;
 }
 .card{
   display: grid;
@@ -347,6 +351,10 @@ img.large{
   width: 80px;
   height: 36px;
 }
+
+/*-----------------------------------NAVBAR---------------------------------*/
+
+
 
 
 

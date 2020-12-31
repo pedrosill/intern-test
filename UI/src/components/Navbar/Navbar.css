@@ -59,16 +59,34 @@
 .fa-bars {
     color: #fff;
 }
-  
+
 .nav-links-mobile {
-    display: none;
+    display: block;
+    text-align: center;
+    padding: 7px;
+    border-radius: 0.5rem;
+    width: 100%;
+    background: #0075B5;
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
 }
+
+.nav-links-mobile:hover {
+    padding: 7px;
+    transition: all 0.3s ease-out;
+    background:white;
+    color: black;
+    transition: 250ms;
+    font-weight: bold;
+    font-size: 17px;
+} 
   
 .menu-icon {
     display: none;
 }
   
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1143px) {
     body {
         overflow-x: hidden;
     }
@@ -98,9 +116,32 @@
         margin-right: 0px;
     }
 
+    .nav-links-mobile {
+        display: block;
+        text-align: center;
+        padding: 7px;
+        margin-left: -26px;
+        border-radius: 50px;
+        width: 100%;
+        background: #0075B5;
+        text-decoration: none;
+        color: white;
+        font-size: 17px;
+    }
+    
+    .nav-links-mobile:hover {
+        padding: 7px;
+        transition: all 0.3s ease-out;
+        background:white;
+        color: black;
+        transition: 250ms;
+        font-weight: bold;
+        font-size: 17px;
+    } 
+
     .nav-links {
         text-align: center;
-        margin-left: -25px;
+        margin-left: -26px;
         width: 100%;
         display: table;
     }
@@ -139,33 +180,6 @@
     .fa-times {
         color: white;
         font-size: 2rem;
-    }
-
-    .nav-links-mobile {
-        display: block;
-        text-align: center;
-        padding: 7px;
-        margin: 1px auto;
-        border-radius: 50px;
-        width: 80%;
-        background: #0075B5;
-        text-decoration: none;
-        color: white;
-        font-size: 17px;
-    }
-
-    .nav-links-mobile:hover {
-        padding: 7px;
-        transition: all 0.3s ease-out;
-        background: #8A2BE2;
-        color: white;
-        transition: 250ms;
-        font-weight: bold;
-        font-size: 17px;
-    }
-
-    Button {
-        display: none;
     }
 
     .nav-item {

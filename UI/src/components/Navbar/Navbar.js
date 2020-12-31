@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from './Button.js';
 import { Link, Route } from 'react-router-dom';
 import './Navbar.css';
 import { useSelector } from 'react-redux';
@@ -101,7 +100,6 @@ function Navbar() {
                             >
                               Sign in
                             </Link>
-                            <Button/>
                           </li>
                             
                         )
