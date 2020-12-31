@@ -86,7 +86,7 @@
     display: none;
 }
   
-@media screen and (max-width: 1143px) {
+@media screen and (max-width: 1187px) {
     body {
         overflow-x: hidden;
     }
