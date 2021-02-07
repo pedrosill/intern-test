@@ -337,10 +337,10 @@ img.large{
 
 /* Search */
 .search button {
-  border-radius: 0 0.5rem 0.5rem 0;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-right: none;
-  margin-right: 0.5rem;
-  width: 40px;
+  margin: 50px;
+  width: 80px;
   height: 42px;
   background-color: #0075B5;
 }
@@ -352,8 +352,24 @@ img.large{
   height: 36px;
 }
 
-/*-----------------------------------NAVBAR---------------------------------*/
+/*-----------------------------------Pagination---------------------------------*/
 
+.pagination a {
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #0075B5;
+  color: white;
+  font-size: 1.6rem;
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pagination a.active{
+  font-weight: bold;
+}
 
 
 

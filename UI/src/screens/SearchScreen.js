@@ -11,12 +11,13 @@ export default function SearchScreen(props) {
   const { 
     name = 'all', 
     category='all',
+    pageNumber= 1 ,
   } = useParams();
 
   const dispatch = useDispatch();
 
   const internshipList = useSelector((state) => state.internshipList);
-  const { loading, error, internships} = internshipList;
+  const { loading, error, internships, page, pages} = internshipList;
 
   const internshipCategoryList = useSelector((state) => state.internshipCategoryList);
   const { 
@@ -28,16 +29,18 @@ export default function SearchScreen(props) {
   useEffect(() => {
     dispatch(
       listInternships({ 
+        pageNumber,
         name: name !== 'all' ? name : '',
         category: category !== 'all' ? category : '' ,
       })
     );
-  }, [category, dispatch, name]);
+  }, [category, dispatch, name, pageNumber]);
 
   const getFilterUrl = (filter) =>{
+    const filterPage = filter.page || pageNumber;
     const filterCategory = filter.category || category;
     const filterName= filter.name || name;
-    return `/search/category/${filterCategory}/name/${filterName}`;
+    return `/search/category/${filterCategory}/name/${filterName}/pageNumber/${filterPage}`;
   };
 
   return (
@@ -95,6 +98,19 @@ export default function SearchScreen(props) {
                 {internships.map((internship) => (
                   <Internship key={internship._id} internship={internship}></Internship>
                 ))}
+              </div>
+              <div className="row center pagination">
+                {
+                  [...Array(pages).keys()].map(x => (
+                    <Link 
+                      className={x + 1 === page ? 'active' : ''}
+                      key={x+1} 
+                      to={getFilterUrl({page: x+1})}
+                    >
+                      {x+1}
+                    </Link>
+                  ))
+                }
               </div>
             </>
           )}

@@ -11,16 +11,23 @@ export default function InternshipScreen(props) {
     const internshipDetails = useSelector((state) => state.internshipDetails);
     const { loading, error, internship } = internshipDetails;
 
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
+
     useEffect(() => {
         dispatch(detailsInternship(internshipId));
     }, [dispatch, internshipId]);
 
     const applyHandler = () => {
-        props.history.push('/signin?redirect=apply')
+        if (userInfo){
+            props.history.push('/signin?redirect=apply')
+        }
     }
 
     const addToCartHandler = () => {
-        props.history.push(`/saved/${internshipId}`)
+        if (userInfo){
+            props.history.push(`/saved/${internshipId}`)
+        }
     };
 
     return (
@@ -75,13 +82,13 @@ export default function InternshipScreen(props) {
                                                             <span className="success">Open</span>
                                                         ) : (
                                                                 <span className="danger">Closed</span>
-                                                            )}
+                                                        )}
                                                     </div>
                                                     <p></p>
                                                 </div>
                                             </li>
                                             {
-                                                internship.status === 'Open' && (
+                                                internship.status === 'Open' &&  (
                                                     <li>
                                                         <button className="iscreen" onClick={applyHandler}> Apply </button>
                                                     </li>
@@ -89,13 +96,22 @@ export default function InternshipScreen(props) {
                                             }
                                             <p></p>
                                             {
-                                                internship.status === 'Open' && (
+                                                internship.status === 'Open' &&  (
                                                     <li>
                                                         <button onClick={addToCartHandler} className="iscreen">Save</button>
                                                     </li>
-                                                )
+                                                ) 
                                             }
-                                                        
+                                            <p></p>
+                                            {
+                                                !userInfo && (
+                                                    <li>
+                                                        <MessageBox variant="danger" >
+                                                            Sign in to Apply and Save
+                                                        </MessageBox>
+                                                    </li>
+                                                )
+                                            }            
                                         </ul>
                                     </div>
                                 </div>

@@ -21,6 +21,7 @@ import {
 } from "../constants/internshipConstants";
 
 export const listInternships = ({
+    pageNumber = '',
     institution='',
     name='', 
     category='',
@@ -30,7 +31,7 @@ export const listInternships = ({
     });
     try{
         const { data } = await Axios.get(
-            `/api/internships?institution=${institution}&name=${name}&category=${category}`
+            `/api/internships?pageNumber=${pageNumber}&institution=${institution}&name=${name}&category=${category}`
         );
         dispatch({ type: INTERNSHIP_LIST_SUCCESS, payload: data});
     } catch(error){

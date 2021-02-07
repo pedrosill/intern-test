@@ -47,7 +47,7 @@ function App(){
                         exact
                     ></Route>
                     <Route 
-                        path="/search/category/:category/name/:name" 
+                        path="/search/category/:category/name/:name/pageNumber/:pageNumber" 
                         component={SearchScreen} 
                         exact
                     ></Route>
@@ -66,8 +66,19 @@ function App(){
                         exact
                     ></AdminRoute>
                     <AdminRoute 
+                        path="/internshiplist/pageNumber/:pageNumber" 
+                        component={InternshipListScreen}
+                        exact
+                    ></AdminRoute>
+                    <AdminRoute 
                         path="/userlist" 
                         component={UserListScreen}
+                        exact
+                    ></AdminRoute>
+                    <AdminRoute 
+                        path="/userlist/pageNumber/:pageNumber" 
+                        component={UserListScreen}
+                        exact
                     ></AdminRoute>
                     <AdminRoute 
                         path="/user/:id/edit" 

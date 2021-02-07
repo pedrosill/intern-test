@@ -9,6 +9,8 @@ const internshipRouter = express.Router();
 internshipRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
+    const pageSize =6;
+    const page = Number(req.query.pageNumber) || 1;
 
     const name = req.query.name || '';
     const category = req.query.category || '';
@@ -17,15 +19,22 @@ internshipRouter.get(
     const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
     const institutionFilter = institution ? { institution}: {};
     const categoryFilter = category ? { category}: {};
-    
+
+    const count = await Internship.count({
+      ...institutionFilter, 
+      ...nameFilter,
+      ...categoryFilter,
+    });
     const internships = await Internship.find({
       ...institutionFilter, 
       ...nameFilter,
       ...categoryFilter,
     })
       .populate('institution', 'institution.name institution.logo')
+      .skip(pageSize*(page - 1))
+      .limit(pageSize)
       ;
-    res.send(internships);
+    res.send({internships, page, pages: Math.ceil(count / pageSize)});
   })
 );
 

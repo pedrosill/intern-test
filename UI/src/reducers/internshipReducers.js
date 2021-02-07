@@ -28,7 +28,9 @@ export const internshipListReducer = (state = { loading: true, internships: [] }
         case INTERNSHIP_LIST_SUCCESS:
             return {
                 loading: false, 
-                internships: action.payload, 
+                internships: action.payload.internships, 
+                pages: action.payload.pages, 
+                page: action.payload.page,
             };
         case INTERNSHIP_LIST_FAIL:
             return {loading: false, error: action.payload};
