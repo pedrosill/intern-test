@@ -102,8 +102,16 @@ userRouter.get(
   isAuth, 
   isAdmin, 
   expressAsyncHandler(async(req, res) => {
-    const users = await User.find({});
-    res.send(users);
+    const pageSize =6;
+    const page = Number(req.query.pageNumber) || 1;
+
+    const count = await User.count({});
+    const users = await User.find({
+    })
+    .skip(pageSize*(page - 1))
+    .limit(pageSize)
+    ;
+    res.send({users, page, pages: Math.ceil(count / pageSize)});
   })
 );
 
